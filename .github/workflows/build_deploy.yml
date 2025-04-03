@@ -2,9 +2,26 @@ name: Build and Deploy ReactApp
 permissions:
   contents: write
 on: 
-  workflow_dispatch
+  workflow_dispatch:
+  push:
+    branches:
+      - main
 jobs:
-  deploy:
+  tests:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout 🛎️
+        uses: actions/checkout@v4
+      - name: Install node 22 
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - name: Install npm
+        run: npm install
+      - name: Test
+        run: npm run test
+
+  build:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout 🛎️
@@ -20,6 +37,7 @@ jobs:
 
       - name: Build App
         run: npm run build 
+
       - name: Deploy 🚀
         uses: JamesIves/github-pages-deploy-action@v4
         with:
