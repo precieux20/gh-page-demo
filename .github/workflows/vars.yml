@@ -16,8 +16,9 @@ jobs:
                 DB_PASSWORD_REPO_SECRETS: ${{secrets.DB_PASSWORD}}
               shell: bash
               run: |
-                echo $TP_VAR
+                echo $TOP_VAR
                 echo $MA_VAR
+                echo $REPO
                 echo $DB_PASSWORD
                 echo $DB_PASSWORD_REPO_SECRETS
 
