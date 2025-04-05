@@ -1,0 +1,25 @@
+name: Vars ReactApp
+on: 
+    workflow_dispatch:
+env:
+    TOP_VAR: top_vars
+jobs:
+    vars:
+        name: echo Vars
+        runs-on: ubuntu-latest
+        steps:
+            - name: print resultat
+              env: 
+                MA_VAR: Ma variable
+                REPO: ${{github.repository}}
+                DB_PASSWORD: 123456789
+                DB_PASSWORD_REPO_SECRETS: ${{secrets.DB_PASSWORD}}
+              shell: bash
+              run: |
+                echo $TP_VAR
+                echo $MA_VAR
+                echo $DB_PASSWORD
+                echo $DB_PASSWORD_REPO_SECRETS
+
+
+        
